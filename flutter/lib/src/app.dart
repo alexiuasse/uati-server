@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-
+import 'package:whatilleat/src/components/shapes.dart';
 import 'sample_feature/sample_item_details_view.dart';
 import 'sample_feature/sample_item_list_view.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'settings/settings_controller.dart';
 import 'settings/settings_view.dart';
 
@@ -18,6 +17,34 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeData lightThemeData = ThemeData(
+      textTheme: GoogleFonts.montserratTextTheme(
+        ThemeData(brightness: Brightness.light).textTheme,
+      ),
+      bottomSheetTheme: BottomSheetThemeData(shape: roundedShape),
+      dialogTheme: DialogTheme(shape: fullRoundedShape),
+      cardTheme: CardTheme(shape: fullRoundedShape, elevation: 4.0),
+      primarySwatch: const MaterialColor(0xFFFF1919, {
+        50: Color.fromRGBO(255, 25, 25, .1),
+        100: Color.fromRGBO(255, 25, 25, .2),
+        200: Color.fromRGBO(255, 25, 25, .3),
+        300: Color.fromRGBO(255, 25, 25, .4),
+        400: Color.fromRGBO(255, 25, 25, .5),
+        500: Color.fromRGBO(255, 25, 25, .6),
+        600: Color.fromRGBO(255, 25, 25, .7),
+        700: Color.fromRGBO(255, 25, 25, .8),
+        800: Color.fromRGBO(255, 25, 25, .9),
+        900: Color.fromRGBO(255, 25, 25, 1),
+      }),
+    );
+    ThemeData darkThemeData = ThemeData.dark().copyWith(
+      textTheme: GoogleFonts.montserratTextTheme(
+        ThemeData(brightness: Brightness.dark).textTheme,
+      ),
+      bottomSheetTheme: BottomSheetThemeData(shape: roundedShape),
+      dialogTheme: DialogTheme(shape: fullRoundedShape),
+      cardTheme: CardTheme(shape: fullRoundedShape, elevation: 4.0),
+    );
     // Glue the SettingsController to the MaterialApp.
     //
     // The AnimatedBuilder Widget listens to the SettingsController for changes.
@@ -31,37 +58,9 @@ class MyApp extends StatelessWidget {
           // returns to the app after it has been killed while running in the
           // background.
           restorationScopeId: 'app',
-
-          // Provide the generated AppLocalizations to the MaterialApp. This
-          // allows descendant Widgets to display the correct translations
-          // depending on the user's locale.
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('en', ''), // English, no country code
-          ],
-
-          // Use AppLocalizations to configure the correct application title
-          // depending on the user's locale.
-          //
-          // The appTitle is defined in .arb files found in the localization
-          // directory.
-          onGenerateTitle: (BuildContext context) =>
-              AppLocalizations.of(context)!.appTitle,
-
-          // Define a light and dark color theme. Then, read the user's
-          // preferred ThemeMode (light, dark, or system default) from the
-          // SettingsController to display the correct theme.
-          theme: ThemeData(),
-          darkTheme: ThemeData.dark(),
+          theme: lightThemeData,
+          darkTheme: darkThemeData,
           themeMode: settingsController.themeMode,
-
-          // Define a function to handle named routes in order to support
-          // Flutter web url navigation and deep linking.
           onGenerateRoute: (RouteSettings routeSettings) {
             return MaterialPageRoute<void>(
               settings: routeSettings,
