@@ -1,0 +1,17 @@
+pylint
+pylint-django
+autopep8
+Django
+django-allauth
+django-bootstrap-v5
+django-crispy-forms
+crispy_bootstrap5
+django-filter
+django-heroku
+django-tables2
+psycopg2-binary
+python-dateutil
+tablib
+whitenoise
+djangorestframework
+django-rest-auth
