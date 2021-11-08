@@ -5,6 +5,7 @@ from base.models import BaseModel
 class RestaurantTypeRolled(BaseModel):
     restaurant_type_rolled = models.ForeignKey("config.RestaurantType")
     date = models.DateField(auto_now_add=True)
+    time = models.TimeField(auto_now_add=True)
     dice_roll = models.ForeignKey("dice_roll.DiceRoll")
 
 
